@@ -1,13 +1,12 @@
-# service.yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "python-app-chart.fullname" . }}
+  name: {{ .Values.service.name }}
 spec:
   selector:
-    app: python-app
+    app: {{ .Values.deployment.container.name }} 
   ports:
   - protocol: TCP
-    port: {{ .Values.service.port }}
-    targetPort: {{ .Values.service.port }}
+    port: {{ .Values.service.ports.servicePort }}
+    targetPort: {{ .Values.service.ports.targetPort }}
   type: {{ .Values.service.type }}

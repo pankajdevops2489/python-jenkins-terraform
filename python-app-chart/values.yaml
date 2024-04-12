@@ -1,8 +1,20 @@
-# values.yaml
-replicaCount: 1
+deployment:
+  name: python-app-deployment
+  replicas: 1
+  selector:
+    app: python-app
+  container:
+    name: python-app
+    port: 8080
 image:
   repository: pankajdevops2489/pythonapp
   tag: v2
+
 service:
+  name: python-app-service
+  selector:
+    app: python-app
+  ports:
+    servicePort: 80
+    targetPort: 8080
   type: LoadBalancer
-  port: 8080
