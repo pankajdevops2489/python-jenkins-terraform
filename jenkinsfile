@@ -51,10 +51,7 @@ pipeline {
         }
         stage('Push Docker Image to Docker Hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'DOCKERHUB_CREDENTIALS_ID', passwordVariable: 'DOCKERHUB_PASSWORD')]) {
-                    sh 'docker login -u pankajdevops2489 -p $DOCKERHUB_PASSWORD'
                     sh 'docker push pankajdevops2489/pythonapp:v1'
-                }
             }
         }
         stage('Deploying Python Application') {
