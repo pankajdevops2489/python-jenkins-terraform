@@ -13,11 +13,10 @@ pipeline {
         }
         stage('Initalizing Terraform code'){
             steps{
-                dir('Terraform-files'){
                     sh '''
+                    cd Terraform-Files
                     terraform init
                     '''
-                }
             }
         }
         stage('Format and Validate Terraform code'){
