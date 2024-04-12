@@ -15,7 +15,7 @@ pipeline {
             steps{
                     sh '''
                     cd Terraform-Files
-                    sudo terraform init
+                    terraform init
                     '''
             }
         }
@@ -23,8 +23,8 @@ pipeline {
             steps{
                     sh '''
                     cd Terraform-Files
-                    sudo terraform fmt
-                    sudo terraform validate
+                    terraform fmt
+                    terraform validate
                     '''
             }
         }
@@ -33,7 +33,7 @@ pipeline {
                     sh '''
                     cd Terraform-Files
 
-                    sudo terraform apply -auto-approve
+                    terraform apply -auto-approve
                     '''
                 }
         }
