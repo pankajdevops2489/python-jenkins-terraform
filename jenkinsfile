@@ -22,36 +22,33 @@ pipeline {
         }
         stage('Format and Validate Terraform code'){
             steps{
-                dir('Terraform-files'){
                     sh '''
+                    cd Terraform-Files
                     terraform fmt
                     terraform validate
                     '''
-                }
             }
         }
         stage('Terraform Apply'){
             steps{
-                dir('Terraform-files'){
                     sh '''
+                    cd Terraform-Files
+
                     terraform apply -auto-approve
                     '''
                 }
-            }
         }
         stage('Image Build') {
             steps{
                 script{
-                    // dir('EKS/ConfigurationFiles') {
                         sh 'docker build . -t pythonapp:v1'
-                    // }
                 }
             }
         }
         stage('Deploying Nginx Application') {
             steps{
                 script{
-                    dir('EKS/ConfigurationFiles') {
+                    dir('sampleapp') {
                         sh 'aws eks update-kubeconfig --name my-eks-cluster'
                         sh 'kubectl apply -f deployment.yaml'
                         sh 'kubectl apply -f service.yaml'
