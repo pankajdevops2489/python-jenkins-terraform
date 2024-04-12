@@ -51,10 +51,9 @@ pipeline {
         stage('Deploying Nginx Application') {
             steps{
                 script{
-                    dir('sampleapp') {
+                    dir('python-app-chart') {
                         sh 'aws eks update-kubeconfig --name my-eks-cluster'
-                        sh 'kubectl apply -f dep.yaml'
-                        sh 'kubectl apply -f svc.yaml'
+                        sh 'helm upgrade --install pythonapp . -f values.yaml'
                     }
                 }
             }
