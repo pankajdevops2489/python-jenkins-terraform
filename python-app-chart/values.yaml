@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: pythonapp
+  repository: pankajdevops2489/pythonapp
   pullPolicy: Never
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v1"
